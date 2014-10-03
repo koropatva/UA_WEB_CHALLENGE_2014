@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+mainClassName = 'com.uawebchallenge.Standalone'
+
+run {  
+    if ( project.hasProperty("appArgs") ) {  
+        args Eval.me(appArgs)  
+    }  
+}
+
+repositories {
+	mavenCentral()
+	flatDir {
+		dirs 'libs'
+	}
+}
+
+dependencies {
+	compile 'org.springframework.hateoas:spring-hateoas:0.16.0.RELEASE'
+	compile 'org.springframework.ws:spring-oxm-tiger:1.5.4'
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+	compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+	compile 'javax.xml.bind:jaxb-api:2.2.9'
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main/java'
+		}
+		resources {
+			srcDir 'src/main/resources'
+		}
+	}
+}
